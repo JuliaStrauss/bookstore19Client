@@ -1,0 +1,31 @@
+<div style="margin: 25px;" class="ui middle selection divided list">
+
+  <h2>Deine Bestellung</h2>
+  <div class="item ui grid" *ngFor="let book of booksinshoppingcart">
+    <div  class="two column row" style="margin-bottom: 20px;">
+      <div class="column">
+        <a class="bs-book-list-item"
+           [book]="book" [routerLink]="book?.isbn">
+        </a>
+      </div>
+
+      <div class="column">
+        <p>Menge:  {{getAmount(book?.isbn)}} </p>
+      </div>
+    </div>
+  </div>
+
+
+<div style="margin-bottom: 20px;">
+  <span>Lieferadresse: </span><br/>{{getAddress()}}
+</div>
+
+<span>Gesamtpreis netto: </span> {{getNettoAmount()}} <span>€</span><br/>
+<span>Gesamtpreis brutto: </span>{{getBruttoAmount()}} <span>€</span><br/><br/>
+
+<button class="ui small green button" (click)="newOrder()">Bestellung abschicken
+
+</button>
+
+</div>
+

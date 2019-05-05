@@ -1,0 +1,53 @@
+<!--User ist NICHT eingeloggt = Login-Formular wird angezeigt-->
+<div style="margin: 25px;" *ngIf="!isLoggedIn()">
+    <h1>Login</h1>
+    <form class="ui large form" [formGroup]="loginForm" (ngSubmit)="login()">
+        <div class="field">
+            <!--Inline Validierung E-Mai-->
+            <label>E-Mail</label>
+            <input type="email" id="username" formControlName="username">
+            <div *ngIf="loginForm.get('username').invalid &&
+                 (loginForm.get('username').dirty || loginForm.get('username').touched) &&
+                  loginForm.get('username').hasError('required')" class="ui negative message"> Benutzername ist
+                verpflichtend
+            </div>
+
+            <div *ngIf="loginForm.get('username').invalid &&
+                  (loginForm.get('username').dirty || loginForm.get('username').touched) &&
+                  loginForm.get('username').hasError('email')" class="ui negative message"> E-Mail Format überprüfen
+            </div>
+        </div>
+
+        <!--Inline Validierung Passwort-->
+        <div class="field">
+            <label>Passwort</label>
+            <input type="password" formControlName="password">
+            <div *ngIf="loginForm.get('password').invalid &&
+                  (loginForm.get('password').dirty || loginForm.get('password').touched)" class="ui negative message">
+                Passwort ist verpflichtend
+            </div>
+        </div>
+
+        <button type="submit" class="ui button" [disabled]="loginForm.invalid">Login</button>
+    </form>
+</div>
+
+
+<!-- User ist eingeloggt = Kontodaten werden angezeigt-->
+<div style="margin: 25px;" *ngIf="isLoggedIn()">
+    <button *ngIf="!isAdmin()" type="button" class="ui primary button" [routerLink]="['../order']">Deine Bestellungen</button>
+
+    <div style="margin-top: 40px; ">
+        <h2>Meine Daten</h2>
+
+
+            <span style="margin-bottom: 0px; font-weight: bold">Vorname: </span>{{getUserFirstName()}}<br/>
+            <span style="margin-bottom: 0px; font-weight: bold">Nachname: </span>{{getUserLastName()}}<br/>
+            <span style="margin-bottom: 0px; font-weight: bold">Adresse: </span>{{getAddress()}}
+
+    </div>
+
+    <div style="margin-top: 30px;">
+    <button type="button" class="ui small red button" (click)="logout()" [routerLink]="['../home']">Logout</button>
+    </div>
+</div>

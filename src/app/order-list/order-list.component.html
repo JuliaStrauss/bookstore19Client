@@ -1,0 +1,15 @@
+<div  style="margin:25px;">
+  <h1>Übersicht deiner Bestellungen</h1>
+
+  <div class="ui middle aligned selection divided list">
+    <a *ngFor="let order of orders" class="item bs-order-list-item"
+       [order]="order" [routerLink]="order.id">
+    </a>
+
+    <!--User Feedback wenn alle Bücher gelöscht wurden-->
+    <p *ngIf="orders && !orders.length">
+      Es sind keine Bestellungen vorhanden!
+    </p>
+
+  </div>
+</div>

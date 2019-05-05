@@ -1,0 +1,52 @@
+<div style="margin:25px;" *ngIf="order">
+  <!--Allgemeine Infos zur Bestellung-->
+  <h2>Bestellung Nr: {{order.id}} </h2>
+
+  <div style="margin-bottom: 50px;">
+    <h4>Bücher:</h4>
+    <div  class="item row" *ngFor="let book of order?.books" >
+      <p style="text-decoration: underline">{{book.title}}{{book.subtitle}}</p>
+      <span>Preis: {{ book.netAmount }} €</span>
+    </div>
+  </div>
+
+  <div style="margin-bottom: 50px;">
+    <h4>Aktueller Status:</h4>
+    <p>{{ getState(order.state) }}</p>
+  </div>
+
+  <div style="margin-bottom: 50px;">
+    <h4>Bestellt von:</h4>
+    <p>{{getUserFirstname()+" "+getUserLastname()}}</p>
+  </div>
+
+  <div style="margin-bottom: 50px;">
+    <h4>Lieferadresse:</h4>
+    <p>{{getUserAddress()}}</p>
+  </div>
+
+
+
+  <p>Satus ändern zu:</p>
+  <select class="ui dropdown" (change)="changeState($event.target.value)">
+    <option [ngValue]="offen">Offen</option>
+    <option [ngValue]="bezahlt">Bezahlt</option>
+    <option [ngValue]="versendet">Versendet</option>
+    <option [ngValue]="storniert">Storniert</option>
+  </select>
+
+  <br/>
+  <br/>
+  <div class="ui form">
+    <div class="field">
+      <p>Kommentar:</p>
+      <textarea></textarea>
+    </div>
+  </div>
+
+  <br/>
+  <br/>
+  <button class="ui primary button " (click)="saveState(order)">Speichern</button>
+
+</div>
+

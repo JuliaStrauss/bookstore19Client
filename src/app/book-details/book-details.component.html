@@ -1,0 +1,55 @@
+<!--suppress BuyFluidPluginNoteInspection -->
+<div style="margin: 25px;" class="ui grid" *ngIf="book">
+
+  <div class="four wide column">
+    <img class="ui large image" *ngIf="book.images && book.images[0]"
+         [src]="book.images[0].url">
+  </div>
+  <div class="twelve wide column"> <!--Alle Inhalte des Buches werden augegeben-->
+
+    <h2 class="ui header">{{ book.title }} {{ book.subtitle }}</h2>
+
+    <div class="ui divider"></div>
+
+    <p style="margin-bottom: 0px; font-weight: bold">Autor:</p>
+    <div style="margin-bottom: 10px;" class="authors">
+        <span  *ngFor="let author of book.authors; last as l">
+         {{ author.firstName }} {{ author.lastName }}<span *ngIf="!l">, </span>
+       </span>
+    </div>
+
+    <div style="margin-bottom: 10px;" class="published">
+      <p style="margin-bottom: 0px; font-weight: bold">Erschienen am: </p>{{ book.published  | date:'dd.MM.yyyy' }}
+    </div>
+
+    <div style="margin-bottom: 10px;" class="price">
+      <p style="margin-bottom: 0px; font-weight: bold">Preis: </p><p>{{ book.netAmount}}€</p>
+    </div>
+
+    <div style="margin-bottom: 10px;" class="rating">
+      <p style="margin-bottom: 0px; font-weight: bold">Bewertungen: </p>
+      <i *ngFor="let r of getRating(book.rating)" class="yellow star icon"></i>
+    </div>
+
+    <div style="margin-bottom: 10px; margin-top: 30px" class="button">
+      <button  class="ui tiny olive button labeled icon" (click)="addBookToCart()"><i class="cart icon"></i>In den Warenkorb</button>
+      <button  *ngIf="isInCart(book)" class="ui tiny red button labeled icon" (click)="removeBook()"><i class="cart icon"></i>Aus dem Warenkorb entfernen</button>
+    </div>
+  </div>
+
+
+  <div class="sixteen wide column">
+    <h3 class="ui header">Beschreibung</h3>
+    {{ book.description }}
+  </div>
+
+  <div class="sixteen wide column">
+    <div *ngIf="!book.images.length > 1" class="ui small images">
+      <img *ngFor="let thumbnail of book.images" [src]="thumbnail.url">
+    </div>
+  </div>
+
+  <button style="margin-left: 10px;" class="ui primary button" [routerLink]="['../../books']">Zurück zur Übersicht</button>
+
+</div>
+

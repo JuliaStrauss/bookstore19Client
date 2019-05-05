@@ -1,0 +1,20 @@
+<div  style="margin:25px;">
+
+  <div style="margin-bottom: 50px;">
+    <button class="ui primary button" [routerLink]="['../form']">Bücher bearbeiten</button>
+  </div>
+
+  <h1>Alle Bestellungen</h1>
+
+  <div class="ui middle aligned selection divided list">
+    <a *ngFor="let order of orders" class="item bs-administration-order-list"
+       [order]="order" [routerLink]="order.id">
+    </a>
+
+    <!--User Feedback wenn alle Bücher gelöscht wurden-->
+    <p *ngIf="orders && !orders.length">
+      Es sind keine Bestellungen vorhanden!
+    </p>
+
+  </div>
+</div>

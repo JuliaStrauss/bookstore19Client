@@ -1,0 +1,20 @@
+<div style="margin-left: 20px; margin-top: 20px;" class="ui middle aligned selection divided list">
+
+  <h1>Alle Bücher</h1>
+
+  <!--Für jedes Item das es gibt wird Schleife durchlaufen:-->
+  <a *ngFor="let book of books" class="item bs-book-list-item"
+     [book]="book" [routerLink]="book.isbn">
+  </a>
+
+  <!--User Feedback wenn Bücher geladen werden-->
+  <div *ngIf="!books" class="ui active dimmer">
+    <div class ="ui large text loader">Daten werden geladen...</div>
+  </div>
+
+  <!--User Feedback wenn alle Bücher gelöscht wurden-->
+  <p *ngIf="books && !books.length">
+    Es sind keine Bücher vorhanden!
+  </p>
+
+</div>

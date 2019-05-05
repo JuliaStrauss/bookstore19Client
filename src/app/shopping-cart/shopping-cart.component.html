@@ -1,0 +1,23 @@
+<div style="margin:20px;">
+  <h1>Warenkorb</h1>
+
+  <div class="ui middle aligned selection divided list">
+    <!--Für jedes Item das es gibt wird Schleife durchlaufen:-->
+    <a *ngFor="let book of books" class="item bs-shopping-cart-item" [book]="book" [routerLink]="book.isbn">  </a>
+
+    <!--User Feedback wenn Bücher geladen werden-->
+    <div *ngIf="!books" class="ui active dimmer">
+      <div class ="ui large text loader">Daten werden geladen...</div>
+    </div>
+  </div>
+
+  <div>
+    <p>Gesamtpreis:</p>{{getTotalAmount()}} €
+  </div>
+
+  <div style="margin-top: 30px;">
+    <button *ngIf="isLoggedOut()" class="ui primary button" [routerLink]="['../login']">Login</button>
+    <button *ngIf="isLoggedIn()" class="ui primary button" [routerLink]="['../neworder']">Jetzt bestellen</button>
+    <button class="ui small red button" (click)="deleteCart()" [routerLink]="['../home']">Warenkorb löschen</button>
+  </div>
+</div>

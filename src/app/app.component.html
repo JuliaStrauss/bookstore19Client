@@ -1,0 +1,10 @@
+<div class="ui {{isAdmin()?'five':'four'}}  item secondary pointing menu">
+    <a routerLink="home" routerLinkActive="active" class="item">Home</a>
+    <a routerLink="books" routerLinkActive="active" class="item">Alle Bücher</a>
+    <a routerLink="shoppingcart" routerLinkActive="active" class="item">Warenkorb</a>
+    <a *ngIf="isAdmin()" routerLink="administration" routerLinkActive="active" class="item">Administration</a>
+    <a routerLink="login" routerLinkActive="active" class="item">{{getLoginLabel()}}</a>
+
+</div>
+
+<router-outlet></router-outlet>

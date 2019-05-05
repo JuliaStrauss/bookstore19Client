@@ -1,0 +1,19 @@
+<img class="ui tiny image"
+     *ngIf="book?.images[0]"
+     [src]="book.images[0].url">
+
+<div class="content">
+    <div class="header">{{book.title}}</div>
+    <div class="header"> {{ book.subtitle }} </div>
+    <div class="metadata">
+      <span *ngFor="let author of book.authors; last as l">
+        {{ author.firstName }} {{ author.lastName }}<span *ngIf="!l">, </span> <!--nach dem letzten kein , mehr-->
+      </span>
+    </div>
+    <div class="description">{{getBruttoAmount(book)}}€</div>
+    <div class="description">Menge: {{getAmount(book)}} Stück</div>
+</div>
+
+<div style="margin-top: 30px;">
+    <button  class="ui tiny button" (click)="removeBook()">Buch entfernen</button>
+</div>

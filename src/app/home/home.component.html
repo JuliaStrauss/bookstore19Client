@@ -1,0 +1,14 @@
+<div style="margin-left: 20px; margin-top: 20px;" class="ui equal width grid">
+
+    <h1>Bestseller</h1>
+
+    <div class="row">
+        <a *ngFor="let book of books"  class="item bs-home-book-list"
+           [book]="book" [routerLink]="[book.isbn]">
+        </a>
+
+        <div *ngIf="!books" class="ui active dimmer">
+            <div class ="ui large text loader">Daten werden geladen...</div>
+        </div>
+    </div>
+</div>

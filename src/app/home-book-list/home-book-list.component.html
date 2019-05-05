@@ -1,0 +1,19 @@
+<div class="column" *ngIf="book.rating >= 8">
+  <div style="width: 200px; height: 390px; margin: 20px;" class="ui card">
+
+    <div  class="ui small rounded centered image">
+      <img style="margin-top: 10px; margin-bottom: 10px; width: auto; height: 240px;"
+           *ngIf="book?.images[0]"
+           [src]="book.images[0].url">
+    </div>
+
+    <div class="content">
+      <div class="header">{{book.title}}</div>
+      <div class="meta"> {{ book.subtitle }} </div>
+      <div class="description">Preis: {{book.netAmount}} €</div>
+      <div class="description">Rating: {{book.rating}}/10 Sternen</div>
+    </div>
+
+  </div>
+</div>
+
